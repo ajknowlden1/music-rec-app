@@ -1,10 +1,11 @@
 body {
   background-color: cornflowerblue;
   color: white;
+  font-family: "roboto";
+  box-sizing: content-box;
 }
 .App {
   text-align: center;
-  font-family: "roboto-thin";
 }
 
 h1 {
@@ -17,6 +18,7 @@ h1 {
   box-sizing: border-box;
   display: flexbox;
   width: 80%;
+  height: 80%;
   margin: auto;
   align-self: center;
   align-items: center;
@@ -30,6 +32,10 @@ h1 {
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+
+.main-display li {
+  font-size: 18px;
 }
 
 ol {
@@ -48,6 +54,10 @@ select {
   align-self: center;
   width: fit-content;
   height: fit-content;
+  font-size: 20px;
+  color: white;
+  background-color: slategray;
+  border-radius: 10px;
 }
 
 .result {
@@ -63,12 +73,42 @@ select {
   border-radius: 50px;
 }
 
-.reset-btn {
+.reset {
   align-self: center;
   width: fit-content;
   height: fit-content;
+  font-size: 20px;
+  color: white;
+  background-color: slategray;
+  border-radius: 10px;
 }
 
 .artist-info {
   font-size: 18px;
+}
+
+.next-btn {
+  width: fit-content;
+  height: fit-content;
+  font-size: 20px;
+  color: white;
+  background-color: slategray;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.prev-btn {
+  width: fit-content;
+  height: fit-content;
+  font-size: 20px;
+  color: white;
+  background-color: slategray;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.album-list {
+  height: fit-content;
+}
+.album-list li {
+  font-size: 20px;
 }

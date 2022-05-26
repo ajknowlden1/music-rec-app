@@ -60,6 +60,18 @@ function App() {
       ],
       img: "https://ksassets.timeincuk.net/wp/uploads/sites/55/2014/11/2014Ride_Getty144588558_10060314-1.jpg",
     },
+    {
+      name: "The Police",
+      genre: ["Pop", "Rock"],
+      decade: ["70s", "80s"],
+      origin: "Europe",
+      description: `Ride are an English rock band formed in Oxford in 1988. The band consists of Andy Bell, Mark Gardener, Laurence "Loz" Colbert, and Steve Queralt. The band were initially part of the "shoegazing" scene that emerged in England during the early 1990s. Following the break-up of the band in 1996, members moved on to various other projects, most notably Bell who became the bassist for Oasis. In 2001, the band briefly reunited for a one-off performance for a television show. Ride announced their second reunion in November 2014. Their debut album Nowhere has been named one of the important albums of the shoegazing genre. They achieved their biggest commercial success with their 1992 single "Leave Them All Behind", which reached No. 9 on the UK Singles Chart.`,
+      albums: [
+        { albumName: "Outlandos d'Amour", releaseYear: 1978 },
+        { albumName: "Synchronicity", releaseYear: 1983 },
+      ],
+      img: "https://i.pinimg.com/originals/72/af/a6/72afa6312aef3f4d222aa0c1c32ae3ed.jpg",
+    },
   ];
 
   function getResult(genre, decade, origin) {

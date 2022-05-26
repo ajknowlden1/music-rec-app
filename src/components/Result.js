@@ -8,7 +8,7 @@ function Result(props, { setRender }) {
     if (page < resArray.length - 1) setPage((curr) => curr + 1);
   }
   function prevArtist(resArray) {
-    if (page <= resArray.length && page > 0) setPage((curr) => curr - 1);
+    if (page > 0) setPage((curr) => curr - 1);
   }
   if (props.render === true) {
     if (props.resArray.length !== 0) {
