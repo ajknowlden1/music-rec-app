@@ -126,6 +126,27 @@ function App() {
       ],
       img: "https://loadedradio.com/wp-content/uploads/2015/06/sepultura92.jpg",
     },
+    {
+      name: "Vince Staples",
+      genre: ["Hip Hop"],
+      decade: ["Contemporary"],
+      origin: "North America",
+      description: `Vincent Jamal Staples is an American rapper and singer. He is a member of the hip hop trio Cutthroat Boyz alongside fellow California rappers Aston Matthews and Joey Fatts. Staples was once a close associate of Odd Future, Mike G and Earl Sweatshirt in particular. He is currently signed to Motown and Talib Kweli's Blacksmith Records.`,
+      albums: [
+        { albumName: "Big Fish Theory", releaseYear: 2017 },
+        { albumName: "FM!", releaseYear: 2018 },
+      ],
+      img: "https://www.chicagotribune.com/resizer/2FwEKqDASgvQB3ESp_EiknBJiJc=/1200x0/top/www.trbimg.com/img-550ed2dd/turbine/redeye-vince-staples-interview-20150322",
+    },
+    {
+      name: "Miki Matsubara",
+      genre: ["Pop"],
+      decade: ["80s"],
+      origin: "Asia",
+      description: `Miki Matsubara (松原 みき, Matsubara Miki) was a Japanese composer, lyricist, and singer from Nishi-ku, Sakai, Osaka, Japan. Matsubara started her career in 1979 and is known from hit songs such as her debut and immediate breakthrough "Mayonaka no Door (Stay with Me)" which has been covered by numerous artists, including Akina Nakamori. The song was ranked 28th on the Oricon Chart, and according to that chart sold 104,000 copies and 300,000 copies announced by Canyon records. Some of her other known songs were "Neat na gogo san-ji (ニートな午後3時)" and "The Winner" among others.`,
+      albums: [{ albumName: "Super Best", releaseYear: 1986 }],
+      img: "https://lastfm.freetls.fastly.net/i/u/ar0/11e79043370fabce083ab48e844ca2f5.jpg",
+    },
   ];
 
   function getResult(genre, decade, origin) {
@@ -133,12 +154,14 @@ function App() {
       return (
         (artist.genre.includes(genre) && artist.decade.includes(decade)) ||
         (artist.origin.includes(origin) && artist.genre.includes(genre)) ||
-        artist.genre.includes(genre)
+        (artist.decade.includes(decade) && artist.origin.includes(origin))
       );
     });
-    setResult(resultArr);
+
     if (resultArr.length !== 0) {
+      setResult(resultArr);
       setRender(true);
+
       setMatch(true);
     } else setMatch(false);
 
