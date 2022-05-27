@@ -5,6 +5,7 @@ import DecadeList from "./components/DecadeList";
 import OriginList from "./components/OriginList";
 
 import { useState } from "react";
+import HelpPopUp from "./components/HelpPopUp";
 
 function App() {
   const [genre, setGenre] = useState("Rock");
@@ -12,6 +13,8 @@ function App() {
   const [origin, setOrigin] = useState("Europe");
   const [result, setResult] = useState([]);
   const [render, setRender] = useState(false);
+  const [help, setHelp] = useState(false);
+  const [match, setMatch] = useState(true);
   const artists = [
     {
       name: "New Order",
@@ -72,6 +75,57 @@ function App() {
       ],
       img: "https://i.pinimg.com/originals/72/af/a6/72afa6312aef3f4d222aa0c1c32ae3ed.jpg",
     },
+    {
+      name: "Tears for Fears",
+      genre: ["Pop", "Rock"],
+      decade: ["80s"],
+      origin: "Europe",
+      description: `Tears for Fears are an English pop rock band formed in Bath, England, in 1981 by Roland Orzabal and Curt Smith. Founded after the dissolution of their first band, the mod-influenced Graduate, Tears for Fears were associated with the new wave synthesizer bands of the early 1980s, and attained international chart success. Tears for Fears were part of the MTV-driven Second British Invasion of the US.`,
+      albums: [
+        { albumName: "Songs from The Big Chair", releaseYear: 1984 },
+        { albumName: "The Seeds of Love", releaseYear: 1983 },
+      ],
+      img: "https://www.tvovermind.com/wp-content/uploads/2018/01/Tears-for-Fears.jpg",
+    },
+    {
+      name: "LTJ Bukem",
+      genre: ["Electronic"],
+      decade: ["90s"],
+      origin: "Europe",
+      description: `Daniel Williamson, better known as LTJ Bukem, is a British drum and bass musician, producer and DJ. He and his record label Good Looking are most associated with the jazzy, atmospheric side of drum and bass music`,
+      albums: [{ albumName: "Journey Inwards", releaseYear: 2000 }],
+      img: "https://artist3.cdn107.com/bf9/bf9a0b5902185a6a13c0f7673f821280.jpg",
+    },
+    {
+      name: "Kate Bush",
+      genre: ["Pop"],
+      decade: ["70s", "80s"],
+      origin: "Europe",
+      description: `Catherine Bush CBE is an English singer, songwriter, musician, dancer and record producer. In 1978, aged 19, she topped the UK Singles Chart for four weeks with her debut single "Wuthering Heights", becoming the first female artist to achieve a UK number one with a self-written song. Bush has since released 25 UK Top 40 singles, including the Top 10 hits "The Man with the Child in His Eyes", "Babooshka", "Running Up That Hill", "Don't Give Up" (a duet with Peter Gabriel) and "King of the Mountain". All ten of her studio albums reached the UK Top 10, including the UK number one albums Never for Ever (1980), Hounds of Love (1985) and the compilation The Whole Story (1986). She was the first British solo female artist to top the UK album charts and the first female artist to enter the album chart at number one.`,
+      albums: [{ albumName: "Never Forever", releaseYear: 1980 }],
+      img: "https://observer.com/wp-content/uploads/sites/2/2016/11/gettyimages-3281809.jpg?quality=80&strip",
+    },
+    {
+      name: "Mazzy Star",
+      genre: ["Pop", "Alternative/Indie"],
+      decade: ["80s", "90s"],
+      origin: "North America",
+      description: `Mazzy Star is an American alternative rock band formed in 1988 in Santa Monica, California, from remnants of the group Opal. Founding member David Roback's friend Hope Sandoval became the group's vocalist when Kendra Smith left Opal.`,
+      albums: [{ albumName: "She Hangs Brightly", releaseYear: 1990 }],
+      img: "http://365daysinmusic.com/wp-content/uploads/2013/02/Mazzy-Star.jpg",
+    },
+    {
+      name: "Sepultura",
+      genre: ["Metal"],
+      decade: ["80s", "90s"],
+      origin: "South America",
+      description: `Sepultura is a Brazilian heavy metal band from Belo Horizonte. Formed in 1984 by brothers Max and Igor Cavalera, the band was a major force in the groove metal, thrash metal and death metal genres during the late 1980s and early 1990s, with their later experiments drawing influence from alternative metal, world music, nu metal, hardcore punk, and industrial metal. Sepultura has also been credited as one of the second wave of thrash metal acts from the late 1980s to early-to-mid-1990s`,
+      albums: [
+        { albumName: "Arise", releaseYear: 1991 },
+        { albumName: "Roots", releaseYear: 1996 },
+      ],
+      img: "https://loadedradio.com/wp-content/uploads/2015/06/sepultura92.jpg",
+    },
   ];
 
   function getResult(genre, decade, origin) {
@@ -79,18 +133,35 @@ function App() {
       return (
         (artist.genre.includes(genre) && artist.decade.includes(decade)) ||
         (artist.origin.includes(origin) && artist.genre.includes(genre)) ||
-        (artist.origin.includes(origin) && artist.decade.includes(decade))
+        artist.genre.includes(genre)
       );
     });
     setResult(resultArr);
-    setRender(true);
+    if (resultArr.length !== 0) {
+      setRender(true);
+      setMatch(true);
+    } else setMatch(false);
 
     console.log(result, render);
   }
+
+  function NoMatch(props) {
+    if (match === false) return <h2>No matches found...</h2>;
+  }
+
   return (
     <div className="app-wrapper">
       <h1 className="header">What should I listen to?</h1>
       <div className="main-display">
+        <button
+          className="help-btn"
+          onClick={() => {
+            setHelp(true);
+          }}
+        >
+          Help
+        </button>
+        <HelpPopUp help={help} setHelp={setHelp} />
         <GenreList setGenre={setGenre} />
         <DecadeList setDecade={setDecade} />
         <OriginList setOrigin={setOrigin} />
@@ -101,6 +172,7 @@ function App() {
       >
         Reccomend me!
       </button>
+      <NoMatch />
       <Result render={render} resArray={result} setRender={setRender} />
     </div>
   );
